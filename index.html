@@ -159,6 +159,22 @@ h1{font-size:clamp(46px,7vw,94px);letter-spacing:-.055em;line-height:.93;margin-
 .js .spot.in{opacity:1;transform:none;transition:opacity .7s ease,transform .75s cubic-bezier(.22,1,.36,1)}
 .spot-inline{display:block;height:auto;width:clamp(110px,13vw,178px);margin:0 auto 6px}
 @media(max-width:700px){.spot{width:68px;top:-26px}.spot.big{width:80px;top:-32px}}
+/* said out loud — no device */
+.saidwrap{max-width:560px;margin:clamp(22px,3vw,38px) auto 0;display:flex;flex-direction:column;gap:11px}
+.said{border-radius:20px;padding:15px 20px;font-size:clamp(16px,1.9vw,20px);line-height:1.4;max-width:88%;letter-spacing:-.015em}
+.said.me{align-self:flex-end;background:#D9F2E2;border-bottom-right-radius:6px;font-weight:500}
+.said.it{align-self:flex-start;background:#fff;border-bottom-left-radius:6px;box-shadow:0 10px 26px -20px rgba(44,62,80,.5)}
+.said.it b{color:var(--money-deep)}
+.saidbtn{align-self:flex-start;display:flex;gap:8px;margin-top:-3px}
+.saidbtn span{background:#fff;border:1.5px solid #DFDDE6;border-radius:999px;padding:8px 16px;font-size:14px;font-weight:600}
+.saidbtn span.go{border-color:var(--money);color:var(--money-deep)}
+.saidrule{height:1px;background:var(--line);margin-block:10px}
+/* recommendation cards, on the page */
+.recs{display:flex;flex-direction:column;gap:12px}
+.rec{background:#fff;border-radius:18px;padding:16px 18px;display:flex;gap:13px;align-items:center}
+.rec .who2{flex-grow:1}
+.rec .rn{font-size:16px;font-weight:700;letter-spacing:-.015em}
+.rec .rq{font-size:14.5px;color:var(--muted);line-height:1.4;margin-top:2px}
 /* picture-book art, cut into the page */
 .pb{display:block;height:auto;pointer-events:none;user-select:none}
 .js .pb{opacity:0;transform:translateY(18px)}
@@ -1362,23 +1378,15 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
       </div>
     </div>
 
-    <div class="rv" style="margin-top:clamp(30px,4vw,52px);display:flex;justify-content:center">
-      <div class="phone"><div class="screen fit">
-        <div class="scr" style="gap:9px;background:#F6F5F9">
-          <div class="who" style="padding-bottom:9px;border-bottom:1px solid var(--line-soft)">
-            <div class="avatar" style="background:var(--coral)">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg>
-            </div>
-            <div><div style="font-size:14px;font-weight:700">BoomShare</div><div style="font-size:11px;color:var(--money)">online</div></div>
-          </div>
-          <div class="botbub me">send João the final files for 800</div>
-          <div class="botbub bot">€800, fee €24, <b>you keep €776</b>. Send it?</div>
-          <div class="quickbtn"><span style="border-color:var(--money);color:var(--money-deep)">Yes, send it</span><span>Change</span></div>
-          <div style="height:1px;background:var(--line-soft);margin-block:6px"></div>
-          <div class="botbub me">who owes me money?</div>
-          <div class="botbub bot">€1,240. Marta is 12 days out — nudge her?</div>
-        </div>
-      </div></div>
+    <div style="margin-top:clamp(10px,1.6vw,20px)">
+      <div class="saidwrap rv">
+        <div class="said me">send João the final files for 800</div>
+        <div class="said it">€800, fee €24, <b>you keep €776</b>. Send it?</div>
+        <div class="saidbtn"><span class="go">Yes, send it</span><span>Change</span></div>
+        <div class="saidrule"></div>
+        <div class="said me">who owes me money?</div>
+        <div class="said it">€1,240. Marta is 12 days out — nudge her?</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1432,32 +1440,18 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
     </div>
 
     <div class="rv" style="margin-top:clamp(26px,3.4vw,44px);display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:clamp(26px,5vw,64px);align-items:center;max-width:960px;margin-inline:auto">
-      <div style="display:flex;justify-content:center">
-        <div class="phone sm"><div class="screen fit">
-          <div class="scr" style="background:#F8F7F9;gap:10px">
-            <div style="display:flex;align-items:center;gap:9px">
-              <span class="seal" style="width:28px;height:28px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
-              <span style="font-size:14px;font-weight:700">Files unlocked</span>
-            </div>
-            <div style="height:1px;background:var(--line-soft)"></div>
-            <div style="font-size:11.5px;font-weight:700">Ana recommends</div>
-            <div style="background:#fff;border-radius:13px;padding:11px 12px;display:flex;gap:9px;align-items:center">
-              <span class="avatar" style="width:30px;height:30px;font-size:11px;background:var(--blue-soft);color:var(--blue-ink)">JS</span>
-              <span style="flex-grow:1">
-                <span style="display:block;font-size:12.5px;font-weight:600">João Silva · Web development</span>
-                <span style="display:block;font-size:11px;color:var(--muted);line-height:1.35">“João built the site you're looking at.”</span>
-              </span>
-            </div>
-            <div style="background:#fff;border-radius:13px;padding:11px 12px;display:flex;gap:9px;align-items:center">
-              <span class="avatar" style="width:30px;height:30px;font-size:11px;background:#F3E0E3;color:#8A3C48">RC</span>
-              <span style="flex-grow:1">
-                <span style="display:block;font-size:12.5px;font-weight:600">Rita Costa · Copywriting</span>
-                <span style="display:block;font-size:11px;color:var(--muted);line-height:1.35">“Rita wrote every word in the deck.”</span>
-              </span>
-            </div>
-            <p class="p-foot" style="margin-top:2px">No prices. No ratings. No browsing.</p>
+      <div>
+        <div class="recs rv">
+          <div class="rec">
+            <span class="avatar" style="width:38px;height:38px;font-size:13px;background:var(--blue-soft);color:var(--blue-ink)">JS</span>
+            <span class="who2"><span class="rn">João Silva · Web development</span><span class="rq">“João built the site you're looking at.”</span></span>
           </div>
-        </div></div>
+          <div class="rec">
+            <span class="avatar" style="width:38px;height:38px;font-size:13px;background:#F3E0E3;color:#8A3C48">RC</span>
+            <span class="who2"><span class="rn">Rita Costa · Copywriting</span><span class="rq">“Rita wrote every word in the deck.”</span></span>
+          </div>
+          <p class="small" style="text-align:center;margin-top:4px">No prices. No ratings. No browsing.</p>
+        </div>
       </div>
       <div class="stack" style="display:flex;flex-direction:column;gap:18px">
         <div><h3 class="h3" style="font-size:21px">A recommendation, not an advert</h3><p style="color:var(--body);margin-top:6px;font-size:16.5px">The client who just paid a designer often needs a developer.</p></div>
