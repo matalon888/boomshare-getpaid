@@ -732,9 +732,28 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
 .foot-col{display:flex;flex-direction:column;gap:9px}
 .foot-col a{font-size:15px;color:var(--ink)}
 .foot-k{font-size:12px;font-weight:700;letter-spacing:1.4px;color:var(--muted)}
+.ckbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:200;
+ width:min(640px,calc(100vw - 32px));background:var(--ink);color:#fff;border-radius:20px;padding:20px 22px;
+ box-shadow:0 26px 60px -24px rgba(30,44,57,.7);display:flex;flex-direction:column;gap:14px}
+.ckbar p{font-size:14.5px;line-height:1.5;color:#D6DCE2}
+.ckbar p a{color:var(--blush)}
+.ckbtns{display:flex;gap:10px;flex-wrap:wrap}
+.ckbtns button{min-height:44px;padding:11px 20px;border-radius:999px;border:0;font-size:14.5px;font-weight:600;cursor:pointer}
+.ckbtns .yes{background:var(--coral);color:#fff}
+.ckbtns .no{background:rgba(255,255,255,.12);color:#fff}
+@media(max-width:520px){.ckbtns button{flex:1 1 auto}}
 </style>
 
 <div class="grain" aria-hidden="true"></div>
+
+<div class="ckbar" id="ckbar" hidden role="dialog" aria-label="Cookie choices">
+  <p>We use a handful of cookies to keep you signed in. We would also like to measure which pages work, and whether an
+  ad led to a signup — but only if you say yes. <a href="legal/cookies.html">What each cookie does</a>.</p>
+  <div class="ckbtns">
+    <button class="yes" type="button" id="ckYes">Accept analytics</button>
+    <button class="no" type="button" id="ckNo">Only what's necessary</button>
+  </div>
+</div>
 
 <header class="nav" id="nav">
   <div class="wrap nav-in">
@@ -1414,14 +1433,31 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
     </div>
     <div class="foot-cols">
       <div class="foot-col"><span class="foot-k">PRODUCT</span><a href="#drafts">The drafts</a><a href="#chase">The difference</a><a href="#moment">The moment</a><a href="#preview">The preview</a><a href="#files">Files &amp; size</a><a href="#money">The money</a><a href="#agent">No dashboard</a><a href="#more">Everything else</a><a href="#pricing">Pricing</a></div>
-      <div class="foot-col"><span class="foot-k">COMPANY</span><a href="#top">Terms</a><a href="#top">Privacy</a><a href="#top">Contact</a></div>
-      <div class="foot-col"><span class="foot-k">ALSO FROM BOOM</span><a href="https://www.boomshare.ai">Boom screen recorder</a></div>
+      <div class="foot-col"><span class="foot-k">LEGAL</span><a href="legal/terms.html">Terms</a><a href="legal/privacy.html">Privacy</a><a href="legal/cookies.html">Cookies</a><a href="legal/imprint.html">Company details</a><a href="mailto:support@boomshare.ai">Contact</a></div>
+      <div class="foot-col"><span class="foot-k">ALSO FROM BOOM</span><a href="https://www.boomshare.ai">Boom screen recorder</a><a href="legal/index.html">All legal documents</a><a href="legal/client-terms.html">Terms for clients</a></div>
     </div>
   </div>
 </footer>
 
 <script>
 document.documentElement.classList.add('js');
+
+/* cookie consent — nothing non-essential loads until this says so */
+(function(){
+  var bar=document.getElementById('ckbar'), KEY='bs-cookie-choice';
+  function get(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function set(v){ try{ localStorage.setItem(KEY,v); }catch(e){} }
+  function apply(v){ window.boomConsent = (v==='all'); }
+  function show(){ if(bar) bar.hidden=false; }
+  function hide(){ if(bar) bar.hidden=true; }
+  var choice=get();
+  apply(choice);
+  if(!choice) setTimeout(show, 1200);
+  var y=document.getElementById('ckYes'), n=document.getElementById('ckNo'), o=document.getElementById('ckOpen');
+  if(y) y.addEventListener('click',function(){ set('all'); apply('all'); hide(); });
+  if(n) n.addEventListener('click',function(){ set('necessary'); apply('necessary'); hide(); });
+  if(o) o.addEventListener('click',function(e){ e.preventDefault(); show(); });
+})();
 var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 var nav = document.getElementById('nav');
 addEventListener('scroll', function(){ nav.classList.toggle('stuck', scrollY > 8); }, {passive:true});
