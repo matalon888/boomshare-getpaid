@@ -1,0 +1,494 @@
+<title>Apple Design Test</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --black:#000000; --near:#101012; --grey-d:#1D1D1F;
+  --white:#FFFFFF; --grey-l:#F5F5F7; --grey-m:#E8E8ED;
+  --ink:#1D1D1F; --ink-2:#6E6E73; --ink-3:#86868B;
+  --on-dark:#F5F5F7; --on-dark-2:#A1A1A6;
+  --accent:#FF6F61; --accent-d:#C9473A;
+  --money:#12996A; --money-l:#30D18B;
+  --sf:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter Tight","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--black);color:var(--on-dark);font-family:var(--sf);font-size:17px;line-height:1.47;
+ -webkit-font-smoothing:antialiased;letter-spacing:-.01em;overflow-x:hidden}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.03em;line-height:1.05;text-wrap:balance}
+p{margin:0}
+img{max-width:100%;display:block}
+[hidden]{display:none!important}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:4px}
+
+.wrap{max-width:1020px;margin:0 auto;padding-inline:clamp(20px,5vw,40px)}
+.narrow{max-width:760px}
+.panel{padding-block:clamp(72px,11vw,150px)}
+.panel.light{background:var(--grey-l);color:var(--ink)}
+.panel.white{background:var(--white);color:var(--ink)}
+.panel.dark{background:var(--black);color:var(--on-dark)}
+.panel.near{background:var(--near);color:var(--on-dark)}
+.eyebrow{font-size:clamp(19px,2.2vw,24px);font-weight:600;letter-spacing:-.01em;color:var(--accent);margin-bottom:6px}
+.display{font-size:clamp(40px,7.4vw,96px);letter-spacing:-.035em;line-height:1.03}
+.headline{font-size:clamp(32px,5.4vw,64px);letter-spacing:-.032em;line-height:1.06}
+.sub{font-size:clamp(19px,2.3vw,27px);font-weight:400;letter-spacing:-.015em;line-height:1.35;color:var(--on-dark-2)}
+.panel.light .sub,.panel.white .sub{color:var(--ink-2)}
+.body{font-size:clamp(16px,1.6vw,19px);line-height:1.5;color:var(--on-dark-2)}
+.panel.light .body,.panel.white .body{color:var(--ink-2)}
+.center{text-align:center}
+.links{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;margin-top:26px}
+.clink{font-size:clamp(17px,1.8vw,21px);display:inline-flex;align-items:baseline;gap:5px;min-height:44px;align-content:center}
+.clink .chev{display:inline-block;transition:transform .25s ease}
+.clink:hover .chev{transform:translateX(3px)}
+
+/* test badge */
+.testbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:90;
+ background:rgba(30,30,32,.82);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.14);color:#fff;
+ border-radius:999px;padding:9px 18px;font-size:12.5px;font-family:var(--mono);letter-spacing:.4px;white-space:nowrap}
+
+/* nav */
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:80;background:rgba(0,0,0,.72);backdrop-filter:saturate(180%) blur(20px);
+ border-bottom:1px solid rgba(255,255,255,.09)}
+.navin{display:flex;align-items:center;justify-content:space-between;gap:20px;height:48px;max-width:1020px;margin:0 auto;padding-inline:clamp(20px,5vw,40px)}
+.navin a{color:var(--on-dark);font-size:12.5px;font-weight:400;opacity:.86}
+.navin a:hover{opacity:1;text-decoration:none}
+.navlinks{display:flex;gap:clamp(14px,2.6vw,30px)}
+@media(max-width:760px){.navlinks a:nth-child(n+4){display:none}}
+.mark{display:flex;align-items:center;gap:7px}
+.mark b{font-size:14px;font-weight:600;letter-spacing:-.02em}
+
+/* hero */
+.hero{padding-block:clamp(56px,9vw,104px) 0;text-align:center}
+.hero .display{margin-top:4px}
+.hero .sub{margin:20px auto 0;max-width:22ch}
+.stage{position:relative;margin-top:clamp(28px,5vw,56px);overflow:hidden}
+.stage img{width:100%;height:auto}
+.fade-b{position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(to bottom,rgba(0,0,0,0),#000)}
+.foot-note{font-size:12px;color:var(--ink-3);line-height:1.4;max-width:70ch;margin-inline:auto}
+
+/* entry motion */
+.js .up{opacity:0;transform:translateY(26px);filter:blur(6px)}
+.js .up.on{opacity:1;transform:none;filter:none;transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1),filter .8s ease}
+
+/* scroll lock moment */
+.moment{position:relative;height:300vh;background:var(--black)}
+.sticky{position:sticky;top:0;height:100vh;min-height:520px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.lockimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:opacity,transform}
+.vig{position:absolute;inset:0;background:radial-gradient(70% 60% at 50% 50%,rgba(0,0,0,0) 20%,rgba(0,0,0,.78) 100%)}
+.momenttext{position:relative;text-align:center;padding-inline:20px}
+.amount{font-size:clamp(56px,13vw,180px);font-weight:600;letter-spacing:-.05em;line-height:1;color:var(--money-l);
+ font-variant-numeric:tabular-nums;text-shadow:0 0 90px rgba(48,209,139,.4)}
+.momentcap{margin-top:14px;font-size:clamp(17px,2.2vw,24px);color:var(--on-dark-2)}
+
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.6vw,20px)}
+@media(max-width:760px){.tiles{grid-template-columns:1fr}}
+.tile{border-radius:22px;padding:clamp(28px,3.6vw,48px);min-height:300px;display:flex;flex-direction:column;overflow:hidden;position:relative}
+.tile.l{background:var(--grey-l);color:var(--ink)}
+.tile.d{background:var(--grey-d);color:var(--on-dark)}
+.tile.span{grid-column:1/-1;min-height:auto}
+.tile h3{font-size:clamp(23px,2.6vw,32px);letter-spacing:-.028em}
+.tile p{margin-top:12px;font-size:16.5px;line-height:1.5}
+.tile.l p{color:var(--ink-2)}
+.tile.d p{color:var(--on-dark-2)}
+.tile .kick{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.tilefoot{margin-top:auto;padding-top:26px}
+
+/* chatlet */
+.chatlet{display:flex;flex-direction:column;gap:7px;margin-top:22px}
+.cb{max-width:84%;padding:9px 14px;border-radius:17px;font-size:14.5px;line-height:1.42}
+.cb.me{align-self:flex-end;background:var(--accent);color:#fff;border-bottom-right-radius:6px}
+.cb.bot{align-self:flex-start;background:rgba(255,255,255,.1);border-bottom-left-radius:6px}
+.tile.l .cb.bot{background:#E3E3E8;color:var(--ink)}
+
+/* numbers */
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,4vw,60px);text-align:center}
+@media(max-width:620px){.two{grid-template-columns:1fr;gap:34px}}
+.big{font-size:clamp(46px,8vw,100px);font-weight:600;letter-spacing:-.045em;line-height:1;font-variant-numeric:tabular-nums}
+.biglbl{margin-top:10px;font-size:15px;color:var(--ink-3);letter-spacing:.02em}
+
+/* pricing */
+.plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.6vw,20px);margin-top:44px}
+@media(max-width:700px){.plans{grid-template-columns:1fr}}
+.plan{border-radius:22px;padding:clamp(26px,3.2vw,40px);background:var(--grey-l);color:var(--ink)}
+.plan.pro{background:var(--grey-d);color:var(--on-dark)}
+.plan .pname{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.plan.pro .pname{color:var(--accent)}
+.plan .pnum{font-size:clamp(38px,4.6vw,56px);font-weight:600;letter-spacing:-.04em;margin-top:12px;line-height:1}
+.plan ul{list-style:none;padding:0;margin:20px 0 0;display:flex;flex-direction:column;gap:10px}
+.plan li{font-size:16px;display:flex;gap:10px;align-items:flex-start;color:var(--ink-2)}
+.plan.pro li{color:var(--on-dark-2)}
+.plan li svg{flex-shrink:0;margin-top:4px;color:var(--money)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 26px;border-radius:999px;
+ background:var(--accent);color:#fff;font-size:16px;font-weight:500;margin-top:26px;width:100%;transition:filter .2s}
+.btn:hover{filter:brightness(1.08);text-decoration:none;color:#fff}
+.btn.ghost{background:transparent;border:1px solid rgba(29,29,31,.28);color:var(--ink)}
+.plan.pro .btn.ghost{border-color:rgba(255,255,255,.3);color:var(--on-dark)}
+
+/* appendix */
+.appendix{background:var(--near);border-top:1px solid rgba(255,255,255,.1)}
+details{border-bottom:1px solid rgba(255,255,255,.1)}
+summary{list-style:none;cursor:pointer;padding-block:20px;display:flex;justify-content:space-between;gap:18px;align-items:center;
+ font-size:17px;font-weight:500;color:var(--on-dark)}
+summary::-webkit-details-marker{display:none}
+summary .ch{transition:transform .25s;flex-shrink:0;color:var(--ink-3)}
+details[open] summary .ch{transform:rotate(180deg)}
+details .inner{padding-bottom:24px;color:var(--on-dark-2);font-size:15.5px;line-height:1.6;max-width:74ch}
+details h4{margin:16px 0 6px;font-size:14px;font-weight:600;color:var(--on-dark);letter-spacing:-.01em}
+details ul{margin:6px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:5px}
+details code{font-family:var(--mono);font-size:13.5px;color:var(--accent)}
+.vlist{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.vitem{background:rgba(255,255,255,.05);border-radius:12px;padding:13px 16px}
+.vitem b{color:var(--on-dark);display:block;font-size:16px;font-weight:600;letter-spacing:-.02em}
+.vitem span{font-size:14px}
+
+footer{background:var(--black);padding-block:36px 56px;border-top:1px solid rgba(255,255,255,.09)}
+footer p{font-size:12px;color:var(--ink-3);line-height:1.55}
+
+@media(prefers-reduced-motion:reduce){
+  .js .up{opacity:1;transform:none;filter:none}
+  *{animation-duration:.001s!important;transition-duration:.001s!important}
+  .moment{height:auto}.sticky{position:static;height:auto;min-height:0;padding-block:90px}
+}
+</style>
+
+<div class="testbar">TEST BUILD · Apple design · not the live site</div>
+
+<nav class="top">
+  <div class="navin">
+    <a class="mark" href="#top">
+      <svg width="17" height="16" viewBox="0 0 671 641" aria-hidden="true"><path fill="#FF6F61" fill-rule="evenodd" d="M0 304.755C8.192 135.288 147.917.36 319.214 0v67.568c0 130.995-106.12 237.187-237.025 237.187H0Zm319.214 336.245C148.526 640.641 9.188 506.671.093 338.054h82.096c130.905 0 237.025 106.192 237.025 237.187V641Zm32.48-336.245C359.887 135.288 499.612.36 670.908 0v67.568c0 130.995-106.12 237.187-237.025 237.187h-82.189Zm319.214 336.245c-170.688-.359-310.026-134.329-319.121-302.946h82.096c130.905 0 237.025 106.192 237.025 237.187V641Z" clip-rule="evenodd"/></svg>
+      <b>BoomShare</b>
+    </a>
+    <div class="navlinks">
+      <a href="#lock">The lock</a><a href="#preview">Preview</a><a href="#agent">No dashboard</a><a href="#pricing">Pricing</a><a href="#steps">The brief</a>
+    </div>
+    <a href="#pricing" style="color:var(--accent)">Get started ›</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="panel dark hero" id="top" style="padding-bottom:0">
+  <div class="wrap">
+    <p class="eyebrow up">BoomShare for Freelancers</p>
+    <h1 class="display up">Get paid before<br>they download.</h1>
+    <p class="sub up">The files open the second the money lands.</p>
+    <div class="links up">
+      <a class="clink" href="#lock">See how the lock works <span class="chev">›</span></a>
+      <a class="clink" href="#pricing">Free until you're paid <span class="chev">›</span></a>
+    </div>
+  </div>
+  <div class="stage up">
+    <img src="img/ap-lock.jpg" alt="A machined aluminium padlock, closed, lit against black.">
+    <div class="fade-b"></div>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section class="panel dark" style="padding-top:clamp(40px,6vw,80px)">
+  <div class="wrap narrow center">
+    <h2 class="headline up">Send the work.<br>Hold the keys.</h2>
+    <p class="body up" style="margin-top:22px;font-size:clamp(17px,1.9vw,22px);max-width:46ch;margin-inline:auto">
+      Your client watches the whole walkthrough, reads the plan, sees every file by name. And downloads nothing.
+    </p>
+  </div>
+</section>
+
+<!-- SCROLL MOMENT -->
+<section class="moment" id="lock">
+  <div class="sticky">
+    <img class="lockimg" id="imgClosed" src="img/ap-lock.jpg" alt="">
+    <img class="lockimg" id="imgOpen" src="img/ap-open.jpg" alt="A padlock sprung open, green light spilling from inside." style="opacity:0">
+    <div class="vig"></div>
+    <div class="momenttext">
+      <div class="amount" id="amt" style="opacity:0">€800</div>
+      <h2 class="headline" id="mHead">One tap.</h2>
+      <p class="momentcap" id="mCap">That is the entire payment flow.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PREVIEW -->
+<section class="panel white" id="preview">
+  <div class="wrap narrow center">
+    <p class="eyebrow up">The preview</p>
+    <h2 class="headline up">They see everything.<br>They get nothing.</h2>
+    <p class="body up" style="margin-top:20px;max-width:50ch;margin-inline:auto">Watermarked. Low resolution. The first thirty seconds. Enough to fall in love with the work — never enough to walk off with it.</p>
+  </div>
+  <div class="wrap up" style="margin-top:clamp(34px,5vw,60px)">
+    <img src="img/ap-files.jpg" alt="Three sheets of frosted glass floating in dark space, one crisp and two blurred." style="border-radius:22px;width:100%">
+  </div>
+</section>
+
+<!-- TILES -->
+<section class="panel light">
+  <div class="wrap">
+    <h2 class="headline center up" style="margin-bottom:clamp(30px,4vw,52px)">Everything after the link.</h2>
+    <div class="tiles">
+      <div class="tile d up">
+        <span class="kick">Revisions</span>
+        <h3>v1, v2, v3.<br>Same link.</h3>
+        <p>Their note lands on the page. You post the new version. The price never moves, so nothing is renegotiated.</p>
+        <div class="tilefoot" style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="font-family:var(--mono);font-size:12.5px;background:rgba(255,255,255,.1);padding:7px 12px;border-radius:9px">v1 · sent</span>
+          <span style="font-family:var(--mono);font-size:12.5px;background:rgba(255,255,255,.1);padding:7px 12px;border-radius:9px">v2 · updated</span>
+          <span style="font-family:var(--mono);font-size:12.5px;background:rgba(48,209,139,.16);color:var(--money-l);padding:7px 12px;border-radius:9px">€800 · unchanged</span>
+        </div>
+      </div>
+      <div class="tile l up">
+        <span class="kick">Client memory</span>
+        <h3>It learns who<br>pays late.</h3>
+        <p>You never add a client. Type a name on the third delivery and it finds the same person, with every total and every delay.</p>
+        <div class="tilefoot">
+          <div style="background:#fff;border-radius:13px;padding:13px 16px;display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:8px">
+            <b style="font-size:15px;font-weight:600">João</b><span style="font-size:13px;color:var(--money);font-weight:500">pays in 2 days</span>
+          </div>
+          <div style="background:#fff;border-radius:13px;padding:13px 16px;display:flex;justify-content:space-between;gap:12px;align-items:center">
+            <b style="font-size:15px;font-weight:600">Marta</b><span style="font-size:13px;color:#A15C06;font-weight:500">averages 12 days</span>
+          </div>
+        </div>
+      </div>
+      <div class="tile l up" id="agent">
+        <span class="kick">No dashboard</span>
+        <h3>Ask for it wherever<br>you already are.</h3>
+        <p>WhatsApp, your own AI agent, the share sheet, or email. You only open the app to look at the money.</p>
+        <div class="chatlet">
+          <div class="cb me">send João the final files for 800</div>
+          <div class="cb bot">3 files from your last Drive folder. €800, fee €24, you keep €776. Send it?</div>
+        </div>
+      </div>
+      <div class="tile d up">
+        <span class="kick">The loop</span>
+        <h3>Your clients meet<br>your friends.</h3>
+        <p>The moment their files unlock, you introduce up to five people you actually vouch for. Never before payment. No competitors, no prices, no browsing.</p>
+        <div class="tilefoot">
+          <div style="background:rgba(255,255,255,.07);border-radius:13px;padding:14px 16px">
+            <b style="font-size:15px;font-weight:600;display:block">João Silva · Web development</b>
+            <span style="font-size:14px;color:var(--on-dark-2)">“João built the site you're looking at.”</span>
+          </div>
+        </div>
+      </div>
+      <div class="tile l span up" style="text-align:center;align-items:center">
+        <span class="kick">Trust</span>
+        <h3>Your money never touches our account.</h3>
+        <p style="max-width:54ch">The charge runs on your own Stripe. Our fee comes off it at that moment. There is no balance, no payout queue, and no fourteen-day wait — because there is nothing for us to hold.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TWO NUMBERS -->
+<section class="panel white">
+  <div class="wrap narrow">
+    <h2 class="headline center up" style="margin-bottom:clamp(34px,5vw,60px)">Two numbers.<br>That's the app.</h2>
+    <div class="two up">
+      <div><div class="big">€1,240</div><div class="biglbl">Waiting</div></div>
+      <div><div class="big" style="color:var(--money)">€3,860</div><div class="biglbl">Collected</div></div>
+    </div>
+    <p class="foot-note center up" style="margin-top:clamp(30px,4vw,48px)">Deliveries group themselves by client. There is no “add client” screen and no project wizard.</p>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="panel dark" id="pricing">
+  <div class="wrap">
+    <h2 class="headline center up">Free until you get paid.</h2>
+    <p class="sub center up" style="margin-top:16px">Both plans do exactly the same thing.</p>
+    <div class="plans">
+      <div class="plan up">
+        <div class="pname">Free</div>
+        <div class="pnum">€0</div>
+        <p style="margin-top:8px;color:var(--ink-2);font-size:16px">3% per job, capped at €29</p>
+        <ul>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Unlimited deliveries and clients</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 5 GB a delivery, 25 GB kept live</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Every feature on this page</li>
+        </ul>
+        <a class="btn ghost" href="#top">Start free</a>
+      </div>
+      <div class="plan pro up">
+        <div class="pname">Pro</div>
+        <div class="pnum">€149<span style="font-size:19px;font-weight:400;letter-spacing:-.01em;color:var(--on-dark-2)"> / year</span></div>
+        <p style="margin-top:8px;color:var(--on-dark-2);font-size:16px">0.9% per job · or €19 monthly</p>
+        <ul>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 50 GB a delivery, 500 GB kept live</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Your branding on every page</li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Priority for your partner cards</li>
+        </ul>
+        <a class="btn" href="#top">Go Pro</a>
+      </div>
+    </div>
+    <p class="foot-note center" style="margin-top:28px">Your client is never charged a fee. Payments are processed by Stripe on your own account; BoomShare never holds funds.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="panel dark center" style="padding-block:clamp(80px,12vw,160px)">
+  <div class="wrap narrow">
+    <h2 class="display up">Send the next one<br>locked.</h2>
+    <div class="links up"><a class="clink" href="#top" style="font-size:clamp(18px,2vw,23px)">Get paid for free <span class="chev">›</span></a></div>
+  </div>
+</section>
+
+<!-- THE BRIEF -->
+<section class="panel appendix" id="steps" style="padding-block:clamp(48px,6vw,80px)">
+  <div class="wrap">
+    <p class="eyebrow">Test build</p>
+    <h2 class="headline" style="font-size:clamp(26px,3.4vw,38px)">The seven steps behind this page</h2>
+    <p class="body" style="margin-top:14px;max-width:62ch">Each prompt run against BoomShare's own content. Outputs are collapsed — this is the working, not the site.</p>
+
+    <div style="margin-top:30px">
+      <details><summary>1 · The design direction<span class="ch">⌄</span></summary><div class="inner">
+        Pure black and off-white full-bleed panels, one idea per screen, extreme vertical whitespace, everything centred. Type is the system face — on a Mac this page renders in SF Pro, so the headlines are the real thing rather than an approximation. Weight 600, never 800; tracking tightens to −0.035em as size grows. One accent only: BoomShare coral, used for links and the single kicker per panel, so the brand survives the minimalism. Product photography is a single machined object on black with one rim light — the inverse of the cartoon illustrations on the live site.
+        <h4>Deliberately different from the live page</h4>
+        <ul><li>No grain, no blush glows, no floating illustrations</li><li>No interactive demo in the hero — the hero is one sentence and one object</li><li>Section rhythm roughly doubled: 150px versus 76px</li></ul>
+      </div></details>
+
+      <details><summary>2 · The first thing visitors see<span class="ch">⌄</span></summary><div class="inner">
+        Visitor arrives from a Meta ad on a phone, mid-scroll, having just been reminded that a client owes them money. One promise matters: they will not have to ask. Evidence above the fold is the object itself — a lock, unmistakably. The action inside ten seconds is a tap on a text link, not a form.
+        <h4>Three headlines worth testing against each other</h4>
+        <div class="vlist">
+          <div class="vitem"><b>A · Get paid before they download.</b><span>Plain, mechanical, states the trade. Currently live on this build.</span></div>
+          <div class="vitem"><b>B · The files open when the money lands.</b><span>Describes the product rather than the outcome. Truer, slightly slower.</span></div>
+          <div class="vitem"><b>C · Nobody has to ask twice.</b><span>Emotional, no mechanism. Highest ceiling, highest risk of being ignored.</span></div>
+        </div>
+        <h4>Primary and secondary</h4>
+        Primary is a chevron link to the lock demonstration, not to signup — the visitor is not ready at second three. Signup is the secondary, phrased as the price: “Free until you're paid.”
+      </div></details>
+
+      <details><summary>3 · How the site moves<span class="ch">⌄</span></summary><div class="inner">
+        The brand's personality is calm and slightly withholding, so motion is slow, few, and always in service of the lock.
+        <h4>Entry</h4>
+        Hero elements rise 26px and resolve from a 6px blur over 800ms on a decelerating curve, staggered 90ms apart. Blur-to-sharp is the one signature — it rhymes with the watermarked preview.
+        <h4>The one orchestrated moment</h4>
+        A 300vh sticky section where scroll progress crossfades the closed lock into the open one. At 45% the amount fades in and the headline swaps from “One tap.” to “Paid.” Nothing else on the page animates on scroll position — spending the whole motion budget in one place is what makes it read as intentional.
+        <h4>Hover and press</h4>
+        Chevrons nudge 3px. Buttons brighten 8%. No lift, no shadow, no scale on cards.
+        <h4>Never moves</h4>
+        The navigation, all prices, the fee numbers, the legal line. Nothing that a visitor might be trying to read carefully is allowed to animate.
+        <h4>Mobile budget</h4>
+        The sticky moment collapses to a static panel under 900px in reduced-motion, images are capped at 1600px, and every transition is disabled under <code>prefers-reduced-motion</code>.
+      </div></details>
+
+      <details><summary>4 · The copywriting<span class="ch">⌄</span></summary><div class="inner">
+        Awareness on arrival is problem-aware, solution-unaware: they know chasing is miserable, they do not know a lock exists as a product. So the first job is naming the mechanism, not the benefit.
+        <h4>Objection by scroll depth</h4>
+        <ul>
+          <li><b style="color:var(--on-dark)">Hero</b> — “what is this?” → name the mechanism in one sentence.</li>
+          <li><b style="color:var(--on-dark)">After the lock</b> — “isn't that rude?” → show the client's side as one calm tap.</li>
+          <li><b style="color:var(--on-dark)">Preview</b> — “how do they judge it?” → they see everything.</li>
+          <li><b style="color:var(--on-dark)">Tiles</b> — “what about revisions?” → same link, price unchanged.</li>
+          <li><b style="color:var(--on-dark)">Pricing</b> — “what's the catch?” → the client is never charged.</li>
+        </ul>
+        <h4>Their words, not ours</h4>
+        Freelancers say <em>chasing</em>, <em>ghosted</em>, <em>they went quiet</em>, <em>I hate asking</em>. They do not say <em>accounts receivable</em>, <em>cashflow</em> or <em>escrow</em>. None of those three words appear on this page.
+        <h4>Microcopy</h4>
+        Buttons name the outcome: “Start free”, “Go Pro”, “Get paid for free”. The final line under pricing is a trust statement, not a sales one.
+      </div></details>
+
+      <details><summary>5 · The build plan<span class="ch">⌄</span></summary><div class="inner">
+        <h4>Components that repeat</h4>
+        <ul><li><code>Panel</code> — four surfaces: black, near-black, white, grey</li><li><code>Display / Headline / Sub / Body</code> — the whole type scale</li><li><code>ChevronLink</code>, <code>PillButton</code></li><li><code>Tile</code> — light or dark, optional full-width span</li><li><code>StickyMoment</code> — two images plus scroll progress</li><li><code>PlanCard</code>, <code>Disclosure</code></li></ul>
+        <h4>Content that changes often</h4>
+        Headline variants, prices and caps, the partner examples, and every figure in the fee line. All of it belongs in one content file, never inline in components.
+        <h4>Breakpoints</h4>
+        620 (two-up numbers stack) · 760 (tiles and nav collapse) · 900 (sticky moment simplifies) · 1020 (content max width).
+        <h4>Loading</h4>
+        System font first so there is no swap on Apple devices; one Google fallback for everyone else. Hero image eager, all others lazy. Images capped at 1600px and served as JPEG at 84 — the three on this page total roughly 450 KB.
+        <h4>Pre-launch checklist</h4>
+        <ul><li>Every interactive target ≥ 44px</li><li>Contrast checked on both black and grey panels</li><li>Reduced-motion collapses the sticky section</li><li>No horizontal scroll at 390px</li><li>Focus visible on every link</li></ul>
+      </div></details>
+
+      <details><summary>6 · The conversion audit<span class="ch">⌄</span></summary><div class="inner">
+        Path: ad → hero → lock moment → preview → pricing → signup. Friction is concentrated in two places.
+        <h4>The three highest-impact fixes, in order</h4>
+        <div class="vlist">
+          <div class="vitem"><b>1 · There is no working demo above the fold</b><span>The live site lets you actually pay a delivery page; this build only describes it. That interaction is almost certainly the single strongest asset either page has, and this design drops it for the sake of restraint. Expected impact: large and negative. Fix: put the payable phone inside the sticky moment.</span></div>
+          <div class="vitem"><b>2 · No proof of any kind</b><span>No testimonials, no counts, no logos. Fine for Apple, who need no introduction; fatal for an unknown product asking for payment details. Fix: one honest line above pricing once the Phase 0 pilot has real numbers.</span></div>
+          <div class="vitem"><b>3 · The primary action is a chevron link</b><span>Elegant, and it under-converts against a filled button on cold paid traffic. Fix: A/B it directly — this is the cheapest test on the page.</span></div>
+        </div>
+        <h4>Questions left unanswered before the button</h4>
+        How long does setup take; do I need a company; what happens if the client refuses to pay. The live page answers all three in its FAQ; this build has no FAQ at all, which is a real loss.
+        <h4>The metric</h4>
+        Landing → signup, then signup → Stripe connected. The spec's bars are ≥4% and ≥50%. Nothing else on this page matters until those two move.
+      </div></details>
+
+      <details><summary>7 · The launch plan<span class="ch">⌄</span></summary><div class="inner">
+        <h4>First thirty days</h4>
+        Week 1 — ship to the ten Phase 0 users only, no ad spend, watch whether real locked links actually get sent. Week 2 — open €2–3k of Meta to Spain and Brazil at phone placements, conversion event set to payment completed. Weeks 3–4 — read cost per paying user against the €60 bar and the 40% second-paid-link bar at day 30.
+        <h4>Three experiments, in priority order</h4>
+        <ul><li>Headline A versus C — mechanism against emotion</li><li>Chevron link against filled button as the primary</li><li>This Apple build against the current illustrated one, straight split</li></ul>
+        <h4>Cheap feedback</h4>
+        Session recordings on the first 200 sessions, and one WhatsApp question to every pilot user after their first paid link: “what nearly stopped you sending it?”
+        <h4>When to stop changing</h4>
+        Freeze the page once landing → signup clears 4% across 1,000 sessions. Below that, keep testing the hero only; above it, every further change should be to the product, not the page.
+      </div></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b style="color:var(--on-dark-2)">Test build.</b> An alternative design direction for getpaid.boomshare.ai, built to be compared against the current one. Not live, not linked, not final.</p>
+    <p style="margin-top:12px">Mazalore Ltd · Payments processed by Stripe · Support on WhatsApp. Figures shown are illustrative examples, not customer data.</p>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* entry + reveal */
+var ups = [].slice.call(document.querySelectorAll('.up'));
+if (reduce || !('IntersectionObserver' in window)) { ups.forEach(function(e){ e.classList.add('on'); }); }
+else {
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (!e.isIntersecting) return;
+      var sibs = [].slice.call(e.target.parentNode.children).filter(function(c){ return c.classList.contains('up'); });
+      var i = Math.max(sibs.indexOf(e.target), 0);
+      setTimeout(function(){ e.target.classList.add('on'); }, i * 90);
+      io.unobserve(e.target);
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: .12 });
+  ups.forEach(function(e){ io.observe(e); });
+  setTimeout(function(){ ups.forEach(function(e){ e.classList.add('on'); }); }, 4500);
+}
+
+/* the one orchestrated moment */
+var moment = document.querySelector('.moment'),
+    imgOpen = document.getElementById('imgOpen'),
+    imgClosed = document.getElementById('imgClosed'),
+    amt = document.getElementById('amt'),
+    mHead = document.getElementById('mHead'),
+    mCap = document.getElementById('mCap'),
+    ticking = false;
+
+function onScroll(){
+  if (!moment || reduce) return;
+  var r = moment.getBoundingClientRect();
+  var total = r.height - innerHeight;
+  var p = total > 0 ? Math.min(Math.max(-r.top / total, 0), 1) : 0;
+
+  var open = Math.min(Math.max((p - 0.28) / 0.30, 0), 1);
+  imgOpen.style.opacity = open;
+  imgClosed.style.opacity = 1 - open;
+  imgClosed.style.transform = 'scale(' + (1 + p * 0.06) + ')';
+  imgOpen.style.transform = 'scale(' + (1 + p * 0.06) + ')';
+
+  var show = Math.min(Math.max((p - 0.45) / 0.18, 0), 1);
+  amt.style.opacity = show;
+  amt.style.transform = 'translateY(' + (18 - show * 18) + 'px)';
+
+  if (p > 0.52){ mHead.textContent = 'Paid.'; mCap.textContent = '€776 is on its way to your bank.'; }
+  else { mHead.textContent = 'One tap.'; mCap.textContent = 'That is the entire payment flow.'; }
+}
+addEventListener('scroll', function(){
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(function(){ onScroll(); ticking = false; });
+}, { passive: true });
+onScroll();
+</script>
