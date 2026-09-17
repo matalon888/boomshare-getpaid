@@ -691,8 +691,8 @@ h1{font-size:clamp(46px,7vw,94px);letter-spacing:-.055em;line-height:.93;margin-
 .beat{display:flex;align-items:center;gap:14px;padding-block:14px}
 .beat + .beat{border-top:1px dashed #DDDAE4}
 .beat-i{width:40px;height:40px;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.beat-t{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-.02em}
-.beat-s{font-size:14px;color:var(--muted);line-height:1.4}
+.beat-t{display:block;font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-.02em;margin-bottom:2px}
+.beat-s{display:block;font-size:14px;color:var(--muted);line-height:1.4}
 
 /* pricing / faq / footer */
 .price{display:flex;align-items:baseline;gap:9px}
@@ -768,8 +768,8 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
 <!-- ═══ DRAFTS ═══ -->
 <section id="drafts" style="padding-top:clamp(46px,5vw,76px)">
   <div class="wrap">
-    <div class="center mb rv" style="display:flex;flex-direction:column;align-items:center;gap:16px">
-      <img class="pb spot-inline" src="img/pb/desktired.webp" alt="" style="width:clamp(180px,24vw,330px)">
+    <div class="center rv" style="display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:clamp(22px,3vw,34px)">
+      <img class="pb spot-inline" src="img/pb/comfort.webp" alt="Painting: she tiptoes in to lay a blanket over him asleep at his desk, while the padlock creature pinches out the candle." style="width:clamp(230px,30vw,430px)">
       <span class="eyebrow">You have typed at least three of these</span>
       <h2 class="h2">Delete these<br>from your drafts.</h2>
     </div>
@@ -825,7 +825,7 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
   <div class="wrap">
     <div class="band mb rv">
       <div>
-        <span class="eyebrow">Same job. Same client.</span>
+        <span class="eyebrow">Same job, same client</span>
         <h2 class="h2" style="margin-top:18px">Eleven messages,<br>or one.</h2>
         <p class="sub" style="margin-top:18px">Everything below actually happened to somebody this month.</p>
       </div>
@@ -942,7 +942,6 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
 <section id="preview" class="cream" style="padding-block:var(--rhythm)">
   <div class="wrap">
     <div class="band mb rv">
-      <div class="illo-wrap"><img class="illo" style="mask-image:none;-webkit-mask-image:none" src="img/cast/lock-peek.png" alt="Cartoon: the padlock character peeking over a ledge."></div>
       <div>
         <span class="eyebrow">The preview</span>
         <h2 class="h2" style="margin-top:18px">They see everything.<br>They get nothing.</h2>
@@ -1269,9 +1268,9 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
         <div class="thread-head" style="margin-bottom:6px"><b>Your client</b><span class="badge" style="background:var(--blue-soft);color:var(--blue-ink)">NO ACCOUNT, EVER</span></div>
         <div class="track">
           <div class="beat"><span class="beat-i" style="background:var(--blue-soft);color:var(--blue-ink)"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></span><span><span class="beat-t">Curious</span><span class="beat-s">A link from someone they trust</span></span></div>
-          <div class="beat"><span class="beat-i" style="background:var(--blue-soft);color:var(--blue-ink)"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></span><span><span class="beat-t">Convinced</span><span class="beat-s">The walkthrough plays in full, free</span></span></div>
+          <div class="beat"><span class="beat-i" style="background:var(--blue-soft);color:var(--blue-ink)"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></span><span><span class="beat-t">Convinced</span><span class="beat-s">Watches the whole walkthrough, free</span></span></div>
           <div class="beat"><span class="beat-i" style="background:var(--money-soft);color:var(--money)"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M9 11.5V5a1.8 1.8 0 0 1 3.6 0v6"/><path d="M16 11.2v-1a1.7 1.7 0 0 1 3.4 0V15a6 6 0 0 1-6 6h-1.6a6 6 0 0 1-5.2-3l-2-3.4a1.7 1.7 0 0 1 2.8-1.9L9 14.5"/></svg></span><span><span class="beat-t">One tap</span><span class="beat-s">Apple Pay. No form, no login</span></span></div>
-          <div class="beat"><span class="beat-i" style="background:var(--money);color:#fff"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><span><span class="beat-t">Has it</span><span class="beat-s">Downloads live, instantly, forever</span></span></div>
+          <div class="beat"><span class="beat-i" style="background:var(--money);color:#fff"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><span><span class="beat-t">Has it</span><span class="beat-s">Downloads live, forever</span></span></div>
         </div>
       </div>
       <div class="card-dark rv">
@@ -1302,8 +1301,7 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
       <div>
         <h3 class="h2" style="font-size:clamp(28px,3.4vw,42px)">v1, v2, v3.<br>Same link.</h3>
         <img class="pb spot l" src="img/pb/versions.webp" alt="">
-        <p class="sub" style="margin-top:16px">Their note lands on the page. You upload the new version. The URL never changes, so nothing is renegotiated.</p>
-        <p class="small" style="margin-top:12px">Reminders pause automatically while changes are open.</p>
+        <p class="sub" style="margin-top:14px;max-width:32ch">Their note, your new version, the same URL. Nothing is renegotiated.</p>
       </div>
       <div class="mini">
         <div style="background:var(--amber-soft);border-radius:13px;padding:13px 15px">
@@ -1311,7 +1309,6 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
           <p style="font-size:13px;line-height:1.45;margin-top:4px">“The logo feels heavy on the dark background — can we try a lighter version?”</p>
         </div>
         <div class="mini-row"><span style="font-weight:600;font-size:14.5px">v2 · 3 files</span><span class="tag tag-changes">UPDATED</span></div>
-        <div class="mini-row"><span style="font-weight:600;font-size:14.5px;color:var(--muted)">v1 · viewed 10:08</span><span class="tag tag-sent">SENT</span></div>
         <div class="mini-row" style="background:var(--money-soft)"><span style="font-weight:600;font-size:14.5px;color:var(--money-deep)">Price unchanged · €800</span><span class="tag tag-paid">LOCKED</span></div>
       </div>
     </div>
@@ -1321,11 +1318,11 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
       <div>
         <h3 class="h2" style="font-size:clamp(28px,3.4vw,42px)">It quietly learns<br>who pays late.</h3>
         <img class="pb spot" src="img/pb/notebook.webp" alt="">
-        <p class="sub" style="margin-top:16px">You never add a client. Type a name on a third delivery and it finds the same person — with every job, every total and how long they actually take.</p>
+        <p class="sub" style="margin-top:14px;max-width:32ch">You never add a client. It works out who they are, and how long they take.</p>
         <div class="mini" style="margin-top:22px">
           <div class="mini-row"><div><div style="font-weight:600">João Silva</div><div class="small">3 deliveries · €2,400 collected</div></div><span class="tag tag-paid">PAYS IN 2 DAYS</span></div>
           <div class="mini-row"><div><div style="font-weight:600">Marta Ruiz</div><div class="small">5 deliveries · €1,860 collected</div></div><span class="tag tag-changes">AVERAGES 12 DAYS</span></div>
-          <div class="mini-row" style="background:#F3F2F6"><span class="small" style="line-height:1.4">Marta is slow. Ask for a deposit next time?</span></div>
+          <div class="mini-row" style="background:#F3F2F6"><span class="small">Ask Marta for a deposit next time?</span></div>
         </div>
       </div>
     </div>
@@ -1336,7 +1333,7 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
         <span class="soon">COMING IN V2</span>
         <h3 class="h2" style="font-size:clamp(28px,3.4vw,42px);margin-top:14px">Money in stages,<br>still one link.</h3>
         <img class="pb spot l" src="img/pb/stairs.webp" alt="">
-        <p class="sub" style="margin-top:16px">Deposit unlocks nothing. Milestone shows progress. Final opens the files. Big jobs stop being one terrifying invoice.</p>
+        <p class="sub" style="margin-top:14px;max-width:32ch">Deposit, milestone, final. A big job stops being one terrifying invoice.</p>
         <div class="mini" style="margin-top:22px">
           <div class="stage"><i class="on"></i><i class="on"></i><i></i></div>
           <div style="display:flex;justify-content:space-between;gap:10px">
