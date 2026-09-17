@@ -55,12 +55,13 @@ section{position:relative;z-index:1}
 /* nav */
 .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;backdrop-filter:blur(14px);background:rgba(234,232,239,.8);border-bottom:1px solid transparent;transition:border-color .2s}
 .nav.stuck{border-bottom-color:var(--line)}
-.nav-in{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:14px}
-.brand{display:flex;align-items:center;gap:10px;color:var(--ink)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:13px;flex-wrap:nowrap}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink);flex-shrink:0;white-space:nowrap}
 .brand:hover{color:var(--ink)}
 .brand-name{font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:-.04em}
 .brand-tag{font-size:13px;font-weight:500;color:var(--muted);border-left:1px solid #C6C2D0;padding-left:10px}
-.nav-links{display:flex;gap:26px}
+.nav-links{display:flex;gap:30px;flex-shrink:0;white-space:nowrap}
+.nav-links a{white-space:nowrap}
 .nav-links a{font-size:15px;font-weight:500;color:var(--ink)}
 .nav-links a:hover{color:var(--coral-deep)}
 .nav-cta{display:flex;align-items:center;gap:10px}
@@ -170,7 +171,7 @@ h1{font-size:clamp(46px,7vw,94px);letter-spacing:-.055em;line-height:.93;margin-
 @keyframes sway{0%,100%{rotate:-1.4deg}50%{rotate:1.4deg}}
 @media(prefers-reduced-motion:reduce){.sway{animation:none}}
 /* hero spread */
-.spread{position:relative;min-height:clamp(340px,40vw,560px);margin-top:clamp(-30px,-3vw,-10px)}
+.spread{position:relative;min-height:clamp(300px,34vw,470px);margin-top:clamp(-30px,-3vw,-10px)}
 .pb-hammock{top:-2%;left:50%;transform:translateX(-50%);width:clamp(260px,38vw,560px);z-index:1}
 .js .pb-hammock{transform:translateX(-50%) translateY(18px)}
 .js .pb-hammock.in{transform:translateX(-50%)}
@@ -393,7 +394,7 @@ h1{font-size:clamp(46px,7vw,94px);letter-spacing:-.055em;line-height:.93;margin-
 .replay:hover{color:var(--ink)}
 
 /* marquee */
-.marq{overflow:hidden;border-block:1px solid var(--line);padding-block:17px;margin-top:clamp(34px,5vw,60px)}
+.marq{overflow:hidden;border-block:1px solid var(--line);padding-block:15px;margin-top:clamp(20px,2.6vw,34px)}
 .marq-track{display:flex;gap:40px;width:max-content;animation:marq 34s linear infinite}
 .marq-track span{font-size:15px;font-weight:500;color:var(--muted);white-space:nowrap;display:flex;align-items:center;gap:40px}
 @keyframes marq{to{transform:translateX(-50%)}}
@@ -559,7 +560,22 @@ h1{font-size:clamp(46px,7vw,94px);letter-spacing:-.055em;line-height:.93;margin-
 @media(prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none}.float,.bob{animation:none}*{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important}}
 
 /* ── chat threads ── */
-.threads{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(22px,3vw,44px);align-items:start}
+.verdict2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2.4vw,28px);max-width:880px;margin-inline:auto}
+@media(max-width:720px){.verdict2{grid-template-columns:1fr}}
+.vcol{border-radius:24px;padding:clamp(26px,3.2vw,38px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px}
+.vcol.bad{background:#F7EDEB}
+.vcol.good{background:var(--money-soft)}
+.vlbl{font-family:var(--mono);font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted)}
+.vnum{font-family:var(--display);font-weight:800;font-size:clamp(76px,11vw,140px);letter-spacing:-.06em;line-height:.92;font-variant-numeric:tabular-nums}
+.vcol.bad .vnum{color:#9C3527}
+.vcol.good .vnum{color:var(--money)}
+.vunit{font-size:16px;color:var(--body);margin-bottom:16px}
+.vbub{background:#fff;border-radius:16px;border-bottom-left-radius:5px;padding:11px 15px;font-size:14.5px;font-weight:500;width:100%;max-width:280px}
+.vbub.good{background:#fff;color:var(--money-deep);font-weight:600}
+.vseen{display:block;font-family:var(--mono);font-size:10px;color:#97A0A9;margin-top:4px}
+.vend{margin-top:14px;font-family:var(--mono);font-size:13.5px;font-weight:600;border-radius:999px;padding:8px 16px}
+.vend.bad{background:#F0D9D4;color:#9C3527}
+.vend.good{background:#CDE8D9;color:var(--money-deep)}
 @media(max-width:900px){.threads{grid-template-columns:1fr;gap:38px}}
 .thread-head{display:flex;align-items:center;gap:10px;margin-bottom:16px}
 .thread-head b{font-family:var(--display);font-size:clamp(19px,2vw,24px);letter-spacing:-.03em}
@@ -705,9 +721,7 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
       <svg width="30" height="29" viewBox="0 0 671 641" aria-hidden="true"><path fill="#FF6F61" fill-rule="evenodd" d="M0 304.755C8.192 135.288 147.917.36 319.214 0v67.568c0 130.995-106.12 237.187-237.025 237.187H0Zm319.214 336.245C148.526 640.641 9.188 506.671.093 338.054h82.096c130.905 0 237.025 106.192 237.025 237.187V641Zm32.48-336.245C359.887 135.288 499.612.36 670.908 0v67.568c0 130.995-106.12 237.187-237.025 237.187h-82.189Zm319.214 336.245c-170.688-.359-310.026-134.329-319.121-302.946h82.096c130.905 0 237.025 106.192 237.025 237.187V641Z" clip-rule="evenodd"/></svg>
       <span class="brand-name">BoomShare</span><span class="brand-tag">for freelancers</span>
     </a>
-    <nav class="nav-links">
-      <a href="#drafts">The drafts</a><a href="#chase">The difference</a><a href="#moment">The moment</a><a href="#preview">The preview</a><a href="#files">Files &amp; size</a><a href="#money">The money</a><a href="#agent">No dashboard</a><a href="#more">Everything else</a><a href="#proof">Reviews</a><a href="#pricing">Pricing</a>
-    </nav>
+    <nav class="nav-links"><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#faq">Questions</a></nav>
     <div class="nav-cta">
       <a class="nav-login" href="#top" style="font-size:15px;font-weight:500;color:var(--ink);padding:10px 14px">Log in</a>
       <a class="btn btn-primary" href="#top">Get paid for free</a>
@@ -730,7 +744,7 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
         Files lock until payment
       </span>
       <h1 style="margin:0;max-width:14ch">Let the lock<br>do the <span style="color:var(--coral)">asking</span>.</h1>
-      <p class="sub" style="max-width:44ch">You send the work. It stays shut until they pay. Nobody has to write the awkward message — least of all you.</p>
+      <p class="sub" style="max-width:36ch">It stays shut until they pay. You never have to ask.</p>
       <div class="hero-actions" style="justify-content:center;margin-top:2px">
         <a class="btn btn-primary" href="#top">Get paid for free</a>
         <a class="btn btn-ghost" href="#try">Try a real delivery page</a>
@@ -752,7 +766,7 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
 </section>
 
 <!-- ═══ DRAFTS ═══ -->
-<section id="drafts" style="padding-top:var(--rhythm)">
+<section id="drafts" style="padding-top:clamp(46px,5vw,76px)">
   <div class="wrap">
     <div class="center mb rv" style="display:flex;flex-direction:column;align-items:center;gap:16px">
       <img class="pb spot-inline" src="img/pb/desktired.webp" alt="" style="width:clamp(180px,24vw,330px)">
@@ -784,7 +798,7 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
     <div class="center mb rv">
       <span class="eyebrow">The real trade</span>
       <h2 class="h2" style="margin-top:18px">Somebody has to be<br>the bad guy.</h2>
-      <p class="sub" style="margin-top:18px;margin-inline:auto;text-align:center;max-width:48ch">It should not be the person who did the work.</p>
+      <p class="sub" style="margin-top:14px;margin-inline:auto;text-align:center;max-width:40ch">It should not be the person who did the work.</p>
     </div>
     <div class="swap2 rv">
       <img class="pb sp-art a" src="img/pb/quill.webp" alt="">
@@ -817,30 +831,20 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
       </div>
     </div>
 
-    <div class="threads">
-      <div class="rv">
-        <div class="thread-head"><b>Until now</b><span class="badge old">WETRANSFER + INVOICE</span></div>
-        <div class="chat">
-          <div class="bub out"><div class="linkcard plain"><span class="lc-ico" style="background:#ECEAF0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C8894" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg></span><span><span class="lc-t">3 files · 157 MB</span><span class="lc-s">expires in 7 days</span></span></div>Oi João! Final brandbook 🎉<span class="t">22 SEP ✓✓</span></div>
-          <div class="bub in">Perfeito, obrigado!<span class="t">10:02</span></div>
-          <div class="bub out">Hey, all good with the files?<span class="t">25 SEP · seen</span></div>
-          <div class="more">+ three more, over three weeks</div>
-          <div class="bub out">João?<span class="t">15 OCT · seen</span></div>
-          <div class="ghost" aria-label="no reply"><i></i><i></i><i></i></div>
-        </div>
-        <div class="tally"><span class="bad">23 days</span><span class="bad">5 reminders</span><span class="bad">€800 still out</span></div>
+    <div class="verdict2 rv">
+      <div class="vcol bad">
+        <span class="vlbl">Until now</span>
+        <span class="vnum">11</span>
+        <span class="vunit">messages, over 23 days</span>
+        <div class="vbub">“João?”<span class="vseen">seen · no reply</span></div>
+        <span class="vend bad">€800 still out</span>
       </div>
-
-      <div class="rv">
-        <div class="thread-head"><b>With BoomShare</b><span class="badge new">ONE LOCKED LINK</span></div>
-        <div class="chat">
-          <div class="bub out"><div class="linkcard brand"><span class="lc-ico" style="background:#2C3E50;color:#fff"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span><span class="lc-t">Delivery for João · €800</span><span class="lc-s">locked · walkthrough 0:24</span></span></div>Oi João! Aqui está 🎉<span class="t">22 SEP ✓✓</span></div>
-          <div class="sysbar blue">Opened · 10:08</div>
-          <div class="sysbar green">Paid €800 · files unlocked · 13:41</div>
-          <div class="bub out">obrigada! 🙌<span class="t">13:42 ✓✓</span></div>
-          <div class="more quiet">nothing else was sent</div>
-        </div>
-        <div class="tally"><span class="good">4 hours</span><span class="good">0 reminders</span><span class="good">€776 in the bank</span></div>
+      <div class="vcol good">
+        <span class="vlbl">With BoomShare</span>
+        <span class="vnum">1</span>
+        <span class="vunit">message, then four hours</span>
+        <div class="vbub good">Paid €800 · files unlocked<span class="vseen">13:41</span></div>
+        <span class="vend good">€776 in the bank</span>
       </div>
     </div>
     <div class="band rv" style="margin-top:clamp(40px,5vw,72px)">
@@ -908,9 +912,9 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
 <section id="moment" style="padding-top:var(--rhythm)">
   <div class="wrap center" style="display:flex;flex-direction:column;align-items:center;gap:16px">
     <span class="eyebrow">The moment</span>
-    <img class="pb spot-inline" src="img/pb/dance2.webp" alt="" style="width:clamp(140px,17vw,230px)">
+    <img class="pb" src="img/pb/fortune.webp" alt="Painting: the two freelancers on a floating island in a golden rain of coins." style="width:min(560px,92%);margin:0 auto clamp(10px,2vw,22px)">
       <h2 class="h2" style="max-width:17ch">Two things happen<br>at the same instant.</h2>
-    <p class="sub" style="max-width:46ch">Their download starts. Your phone makes a sound. No “allow 14–21 days” — the charge runs on your own Stripe and the lock comes off on the same heartbeat.</p>
+    <p class="sub" style="max-width:36ch">Their download starts. Your phone makes a sound.</p>
     <img class="pb pb-wide" src="img/pb/dance.webp" alt="Painting: the padlock creature dances under falling coins while a cat watches, unimpressed.">
     
 
@@ -945,7 +949,7 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
     <img class="pb pb-mid" src="img/pb/frosted.webp" alt="Painting: the padlock creature holds a lantern to frosted glass, revealing only the circle of a hidden painting its light touches.">
     
 
-        <p class="sub" style="margin-top:18px">Pick a trade. Drag the handle. This is the exact difference payment makes.</p>
+        <p class="sub" style="margin-top:16px;max-width:30ch">This is what payment changes.</p>
       </div>
     </div>
 
@@ -1036,7 +1040,7 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
     <div class="center mb rv">
       <span class="eyebrow">Files</span>
       <h2 class="h2" style="margin-top:18px">Deliver anything.<br>We preview what matters.</h2>
-      <p class="sub" style="margin-top:18px;margin-inline:auto;text-align:center">A locked file is a locked file, whatever it is. The format list below only decides what gets an automatic preview — everything else ships fine, it just asks you for one.</p>
+      <p class="sub" style="margin-top:16px;margin-inline:auto;text-align:center;max-width:40ch">A locked file is a locked file. The list below only decides what previews itself.</p>
     </div>
 
     <div class="tbl rv">
@@ -1290,6 +1294,7 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
     <div class="center mb rv">
       <span class="eyebrow">After the first payment</span>
       <h2 class="h2" style="margin-top:18px">One link. The whole job.</h2>
+      <img class="pb" src="img/pb/thread.webp" alt="Painting: the padlock creature walks a long golden ribbon carrying a parcel, past a stack of drawings, a price tag, a paper bird and a coin." style="width:min(820px,100%);margin:clamp(14px,2.4vw,28px) auto 0">
     </div>
 
     <!-- revisions -->
@@ -1353,7 +1358,7 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
         <span class="eyebrow">The agent</span>
         <img class="pb spot-inline" src="img/pb/tincan.webp" alt="">
       <h2 class="h2" style="margin-top:18px;font-size:clamp(32px,4.4vw,56px)">Or just say it<br>out loud.</h2>
-        <p class="sub" style="margin-top:16px">Chat is the whole interface. No new features behind it — the same deliveries, the same money, asked for in a sentence.</p>
+        <p class="sub" style="margin-top:16px;max-width:34ch">The same product, asked for in a sentence.</p>
         <p class="small" style="margin-top:12px">It creates deliveries, chases politely, and answers about status and money. It never invents anything else.</p>
       </div>
     </div>
@@ -1392,38 +1397,29 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
     <div class="center mb rv">
       <span class="eyebrow">No dashboard</span>
       <h2 class="h2" style="margin-top:18px">It works inside the<br>tools you already talk to.</h2>
-      <p class="sub" style="margin-top:18px;margin-inline:auto;text-align:center">Five things this app can do — create a delivery, send it, tell you what you're owed, chase politely, post a new version. Any of them can be asked for from wherever you already are.</p>
+      <p class="sub" style="margin-top:14px;margin-inline:auto;text-align:center;max-width:34ch">Ask for it where you already are.</p>
     </div>
 
     <div class="grid-4f rv">
       <div class="ftile">
         <span class="ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.7 15L2 22l5.2-1.3A10 10 0 1 0 12 2Zm5.5 14c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1a12 12 0 0 1-5.6-4.7c-.4-.7-.9-1.6-.9-2.5s.5-1.4.7-1.6c.2-.2.4-.3.6-.3h.5c.2 0 .4 0 .6.5l.8 1.9c0 .2 0 .3-.1.5l-.4.5c-.1.1-.3.3-.1.6a8.8 8.8 0 0 0 3.8 3.1c.3.1.4.1.6-.1l.8-1c.2-.2.4-.1.6 0l1.8.9c.2.1.4.2.4.3v.8Z"/></svg></span>
-        <h3>In WhatsApp</h3><p>Where the client conversation already lives. Type it, confirm it, done.</p>
+        <h3>WhatsApp</h3><p>Where the client already is.</p>
       </div>
       <div class="ftile">
         <span class="ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg></span>
-        <h3>In your own AI agent</h3><p>Claude, ChatGPT, Cursor. “Ship this to Marta for €1,200” — no browser.</p>
+        <h3>Your own AI agent</h3><p>“Ship this to Marta for €1,200.”</p>
       </div>
       <div class="ftile">
         <span class="ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"/><path d="m8 8 4-4 4 4"/><path d="M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg></span>
-        <h3>From the share sheet</h3><p>Select the photos, tap Share, pick BoomShare. The app never opens.</p>
+        <h3>The share sheet</h3><p>Photos → Share → done.</p>
       </div>
       <div class="ftile">
         <span class="ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="m3 7 9 6 9-6"/></svg></span>
-        <h3>By email</h3><p>Forward the files, put the price in the subject. The desktop escape hatch.</p>
+        <h3>Email</h3><p>Forward files. Price in the subject.</p>
       </div>
     </div>
 
-    <div class="grid-2 rv" style="margin-top:18px">
-      <div class="card">
-        <h3 class="h3" style="font-size:21px">You approve anything that costs somebody money</h3>
-        <p style="color:var(--body);margin-top:9px;font-size:16px">Asking and sending are deliberately two separate steps. An agent can draft a delivery or a reminder all day; the link only reaches your client when you say so.</p>
-      </div>
-      <div class="card-dark">
-        <h3 class="h3" style="font-size:21px;color:#fff">So the app is a receipt, not a cockpit</h3>
-        <p style="margin-top:9px;font-size:16px;color:#C5CDD6">You open it to look at the money, to fix something, or to change a setting. Running the business happens in the conversation you were already having.</p>
-      </div>
-    </div>
+    <p class="center" style="margin-top:26px;font-family:var(--display);font-weight:600;font-size:clamp(19px,2.3vw,26px);letter-spacing:-.025em;line-height:1.35">Nothing reaches your client until you say so.<br><span style="color:var(--muted);font-weight:500">The app is a receipt, not a cockpit.</span></p>
   </div>
 </section>
 
@@ -1437,8 +1433,8 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
     <img class="pb pb-wide" src="img/pb/houses.webp" alt="Painting: three padlock creatures pass a glowing card between little houses on tin-can-and-string lines.">
     
 
-        <p class="sub" style="margin-top:16px">At the one moment a client is happiest — the second their files unlock — you introduce up to five people you actually vouch for.</p>
-        <p class="small" style="margin-top:12px">Never before payment. Complementary trades only, so no competitor ever appears beside you. You write the line, you choose who, you remove anyone, anytime.</p>
+        <p class="sub" style="margin-top:16px">At the moment they are happiest, you introduce the people you vouch for.</p>
+        <p class="small" style="margin-top:12px">Never before payment. No competitors. You choose who.</p>
       </div>
     </div>
 
@@ -1475,19 +1471,10 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
           </div>
         </div></div>
       </div>
-      <div class="stack" style="display:flex;flex-direction:column;gap:14px">
-        <div class="card" style="padding:26px">
-          <h3 class="h3" style="font-size:20px">A recommendation, not an advert</h3>
-          <p style="color:var(--body);font-size:15.5px;margin-top:8px">It reads as a concierge because it is one — the client who just paid a designer often needs a developer next.</p>
-        </div>
-        <div class="card" style="padding:26px">
-          <h3 class="h3" style="font-size:20px">Both sides get three free</h3>
-          <p style="color:var(--body);font-size:15.5px;margin-top:8px">Refer a freelancer and you both take your next three deliveries with no fee at all. Roughly €70 each.</p>
-        </div>
-        <div class="card-dark" style="padding:26px">
-          <h3 class="h3" style="font-size:20px;color:#fff">“A client just viewed your card”</h3>
-          <p style="color:#C5CDD6;font-size:15.5px;margin-top:8px">The nicest notification in the app. Somebody else's happy client is looking at your work.</p>
-        </div>
+      <div class="stack" style="display:flex;flex-direction:column;gap:18px">
+        <div><h3 class="h3" style="font-size:21px">A recommendation, not an advert</h3><p style="color:var(--body);margin-top:6px;font-size:16.5px">The client who just paid a designer often needs a developer.</p></div>
+        <div><h3 class="h3" style="font-size:21px">Both sides get three free</h3><p style="color:var(--body);margin-top:6px;font-size:16.5px">Refer someone and your next three deliveries cost nothing.</p></div>
+        <div><h3 class="h3" style="font-size:21px">“A client just viewed your card”</h3><p style="color:var(--body);margin-top:6px;font-size:16.5px">The nicest notification in the app.</p></div>
       </div>
     </div>
   </div>
