@@ -298,6 +298,8 @@ h1{font-size:clamp(46px,7vw,94px);letter-spacing:-.055em;line-height:.93;margin-
 .screen{position:relative;border-radius:41px;overflow:hidden;background:var(--paper);height:642px}
 .phone.sm .screen{border-radius:35px}
 .scr{position:absolute;inset:0;display:flex;flex-direction:column;padding:20px 17px;gap:11px;overflow:hidden}
+.screen.fit{height:auto!important;min-height:0!important}
+.screen.fit>.scr{position:relative;inset:auto}
 .scr.mid{align-items:center;justify-content:center;text-align:center;gap:7px}
 .browser{border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 40px 80px -40px rgba(30,44,57,.45);border:1px solid rgba(44,62,80,.1)}
 .browser-bar{display:flex;align-items:center;gap:8px;padding:11px 14px;background:#F1F0F4;border-bottom:1px solid var(--line-soft)}
@@ -1356,31 +1358,25 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
         <img class="pb spot-inline" src="img/pb/tincan.webp" alt="">
       <h2 class="h2" style="margin-top:18px;font-size:clamp(32px,4.4vw,56px)">Or just say it<br>out loud.</h2>
         <p class="sub" style="margin-top:16px;max-width:34ch">The same product, asked for in a sentence.</p>
-        <p class="small" style="margin-top:12px">It creates deliveries, chases politely, and answers about status and money. It never invents anything else.</p>
+        
       </div>
     </div>
 
     <div class="rv" style="margin-top:clamp(30px,4vw,52px);display:flex;justify-content:center">
-      <div class="phone"><div class="screen" style="height:560px">
-        <div class="scr" style="gap:8px;background:#F6F5F9">
-          <div class="who" style="padding-bottom:8px;border-bottom:1px solid var(--line-soft)">
+      <div class="phone"><div class="screen fit">
+        <div class="scr" style="gap:9px;background:#F6F5F9">
+          <div class="who" style="padding-bottom:9px;border-bottom:1px solid var(--line-soft)">
             <div class="avatar" style="background:var(--coral)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg>
             </div>
             <div><div style="font-size:14px;font-weight:700">BoomShare</div><div style="font-size:11px;color:var(--money)">online</div></div>
           </div>
-          <div class="botbub me">send João the final files for 800<span style="display:block;text-align:right;font-size:9.5px;color:#7C8894;margin-top:3px;font-family:var(--mono)">09:12</span></div>
-          <div class="botbub bot">The 3 files from your last Drive folder? €800, fee €24, you get €776.</div>
+          <div class="botbub me">send João the final files for 800</div>
+          <div class="botbub bot">€800, fee €24, <b>you keep €776</b>. Send it?</div>
           <div class="quickbtn"><span style="border-color:var(--money);color:var(--money-deep)">Yes, send it</span><span>Change</span></div>
-          <div class="botbub me">yes<span style="display:block;text-align:right;font-size:9.5px;color:#7C8894;margin-top:3px;font-family:var(--mono)">09:12</span></div>
-          <div class="botbub bot">Done — link is in João's chat. I'll tell you the moment he opens it.</div>
-          <div class="botbub me">who owes me money?<span style="display:block;text-align:right;font-size:9.5px;color:#7C8894;margin-top:3px;font-family:var(--mono)">14:30</span></div>
-          <div class="botbub bot">€1,240 across 3 deliveries. Marta is 12 days out — want me to nudge her?</div>
-          <div class="botbub bot" style="background:#fff;border:1.5px dashed #DFDDE6">
-            <div class="lbl" style="font-size:9.5px;margin-bottom:4px">Draft, in her language</div>
-            “Olá Marta! Só um lembrete simpático sobre a entrega — está tudo pronto para si. 🙂”
-          </div>
-          <div class="quickbtn" style="margin-top:2px"><span style="border-color:var(--money);color:var(--money-deep)">Send as me</span><span>Reword</span></div>
+          <div style="height:1px;background:var(--line-soft);margin-block:6px"></div>
+          <div class="botbub me">who owes me money?</div>
+          <div class="botbub bot">€1,240. Marta is 12 days out — nudge her?</div>
         </div>
       </div></div>
     </div>
@@ -1435,36 +1431,31 @@ footer{border-top:1px solid var(--line);margin-top:clamp(60px,8vw,110px);padding
       </div>
     </div>
 
-    <div class="grid-2 rv" style="margin-top:clamp(30px,4vw,52px);align-items:center">
+    <div class="rv" style="margin-top:clamp(26px,3.4vw,44px);display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:clamp(26px,5vw,64px);align-items:center;max-width:960px;margin-inline:auto">
       <div style="display:flex;justify-content:center">
-        <div class="phone sm"><div class="screen" style="height:470px">
-          <div class="scr" style="background:#F8F7F9">
-            <div style="display:flex;align-items:center;gap:8px">
-              <span class="seal" style="width:30px;height:30px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
-              <div><div style="font-size:14px;font-weight:700">Files unlocked</div><div style="font-size:10.5px;color:var(--muted)">Receipt sent to João</div></div>
+        <div class="phone sm"><div class="screen fit">
+          <div class="scr" style="background:#F8F7F9;gap:10px">
+            <div style="display:flex;align-items:center;gap:9px">
+              <span class="seal" style="width:28px;height:28px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <span style="font-size:14px;font-weight:700">Files unlocked</span>
             </div>
-            <div style="height:1px;background:var(--line-soft);margin-block:2px"></div>
+            <div style="height:1px;background:var(--line-soft)"></div>
             <div style="font-size:11.5px;font-weight:700">Ana recommends</div>
-            <div style="background:#fff;border-radius:13px;padding:11px 12px;display:flex;gap:9px;align-items:flex-start">
+            <div style="background:#fff;border-radius:13px;padding:11px 12px;display:flex;gap:9px;align-items:center">
               <span class="avatar" style="width:30px;height:30px;font-size:11px;background:var(--blue-soft);color:var(--blue-ink)">JS</span>
               <span style="flex-grow:1">
                 <span style="display:block;font-size:12.5px;font-weight:600">João Silva · Web development</span>
-                <span style="display:block;font-size:11px;color:var(--muted);line-height:1.4">“João built the site you're looking at.”</span>
-                <span style="display:block;font-size:11.5px;font-weight:700;color:var(--money-deep);margin-top:4px">Say hi on WhatsApp</span>
+                <span style="display:block;font-size:11px;color:var(--muted);line-height:1.35">“João built the site you're looking at.”</span>
               </span>
             </div>
-            <div style="background:#fff;border-radius:13px;padding:11px 12px;display:flex;gap:9px;align-items:flex-start">
+            <div style="background:#fff;border-radius:13px;padding:11px 12px;display:flex;gap:9px;align-items:center">
               <span class="avatar" style="width:30px;height:30px;font-size:11px;background:#F3E0E3;color:#8A3C48">RC</span>
               <span style="flex-grow:1">
                 <span style="display:block;font-size:12.5px;font-weight:600">Rita Costa · Copywriting</span>
-                <span style="display:block;font-size:11px;color:var(--muted);line-height:1.4">“Rita wrote every word in the deck.”</span>
-                <span style="display:block;font-size:11.5px;font-weight:700;color:var(--money-deep);margin-top:4px">Say hi on WhatsApp</span>
+                <span style="display:block;font-size:11px;color:var(--muted);line-height:1.35">“Rita wrote every word in the deck.”</span>
               </span>
             </div>
-            <div style="background:var(--money-soft);border-radius:13px;padding:11px 13px;margin-top:auto">
-              <p style="font-size:11.5px;line-height:1.5;color:var(--money-deep)"><b>Freelancer?</b> Get paid like this for your own work — your next 3 deliveries are fee-free.</p>
-            </div>
-            <p class="p-foot">No prices. No ratings. No browsing.</p>
+            <p class="p-foot" style="margin-top:2px">No prices. No ratings. No browsing.</p>
           </div>
         </div></div>
       </div>
